@@ -1,0 +1,13 @@
+{
+  "name": "SDH-ClassicTheme",
+  "version": "v0.2",
+  "author": "NegativeI0N",
+  "inject": {
+    "shared.css": [
+      "SP",
+      "MainMenu",
+      "QuickAccess"
+    ]
+  },
+  "id": "80e3d8cf-6c7f-4400-afe7-0f7cc17964e3"
+}
