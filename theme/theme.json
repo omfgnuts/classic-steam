@@ -1,0 +1,15 @@
+{
+  "name": "ClassicSteam2004",
+  "display_name": "Classic Steam 2004",
+  "author": "omfgnuts, NegativeI0N",
+  "version": "v1.0.0-alpha.1",
+  "description": "The 2004 Steam VGUI look (olive panels, 1px bevels, Tahoma, maize accents) for SteamOS Game Mode and Big Picture. Fork of NegativeI0N's SDH-ClassicTheme.",
+  "target": "System-Wide",
+  "manifest_version": 9,
+  "tabs": {
+    "default": ["bigpicture", "QuickAccess", "MainMenu"]
+  },
+  "inject": {
+    "shared.css": []
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/omfgnuts/classic-steam/tools/theme.schema.json",
+  "title": "CSS Loader theme.json (manifest v9)",
+  "description": "Written from SDH-CssLoader v2.1.3 source (css_theme.py, css_themepatch.py, css_themepatchcomponent.py). The DeckThemes VS Code extension schema stops at manifest 8.",
+  "type": "object",
+  "required": ["name", "version", "author", "manifest_version", "target", "inject"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "description": "Must equal the theme folder name." },
+    "display_name": { "type": "string", "description": "v9+: name shown to users; lets us rename without breaking installs." },
+    "id": { "type": "string", "description": "Store-assigned. Leave out for local/forked themes (defaults to name)." },
+    "version": { "type": "string", "pattern": "^v\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$" },
+    "author": { "type": "string" },
+    "description": { "type": "string" },
+    "manifest_version": { "type": "integer", "minimum": 1, "maximum": 9 },
+    "target": {
+      "description": "Store category. v9+ allows an array.",
+      "oneOf": [
+        { "$ref": "#/definitions/target" },
+        { "type": "array", "items": { "$ref": "#/definitions/target" }, "minItems": 1, "uniqueItems": true }
+      ]
+    },
+    "tabs": {
+      "type": "object",
+      "description": "v7+: named tab lists. \"default\" is used when an inject entry has an empty list.",
+      "additionalProperties": { "$ref": "#/definitions/tabList" }
+    },
+    "inject": { "$ref": "#/definitions/inject" },
+    "patches": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/patch" }
+    },
+    "flags": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["REQUIRE_NAV_PATCH", "PRESET", "KEEP_DEPENDENCIES", "OPTIONAL_DEPENDENCIES"] },
+      "uniqueItems": true
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "Theme name -> { patch name: value }",
+      "additionalProperties": { "type": "object", "additionalProperties": { "type": "string" } }
+    }
+  },
+  "definitions": {
+    "target": {
+      "description": "Store targets from api.deckthemes.com/themes/filters?type=CSS (2026-11-02).",
+      "enum": ["System-Wide", "Profile", "Tweak", "Library", "Home", "Other", "Keyboard", "Snippet", "Desktop", "Desktop-Library", "Desktop-Tweak", "Store", "Lock Screen", "Media", "Desktop-Store", "Downloads", "Friends and Chat", "Background", "Settings", "Desktop-Friends"]
+    },
+    "tabList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Tab title regex, a tab mapping name, a shorthand (bigpicture, bigpictureoverlay, QuickAccess, MainMenu, store, desktop, desktoppopup, ...), ~url-substring~, or !html-class."
+      }
+    },
+    "inject": {
+      "type": "object",
+      "description": "CSS path -> tabs, or \"--css-var\" -> [value, ...tabs] (v5+).",
+      "additionalProperties": { "$ref": "#/definitions/tabList" }
+    },
+    "patch": {
+      "type": "object",
+      "properties": {
+        "default": { "type": "string" },
+        "type": { "enum": ["dropdown", "checkbox", "slider", "none"] },
+        "values": { "type": "object", "additionalProperties": { "$ref": "#/definitions/inject" } },
+        "components": { "type": "array", "items": { "$ref": "#/definitions/component" } }
+      },
+      "required": ["default", "values"],
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": ["name", "type", "on", "default", "css_variable", "tabs"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "enum": ["color-picker", "image-picker"] },
+        "on": { "type": "string", "description": "Patch value this component is shown for." },
+        "default": { "type": "string" },
+        "css_variable": { "type": "string", "pattern": "^--" },
+        "tabs": { "$ref": "#/definitions/tabList" }
+      }
+    }
+  }
+}

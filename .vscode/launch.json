@@ -1,0 +1,8 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    { "name": "Debug coverage", "type": "node", "request": "launch", "program": "${workspaceFolder}/tools/coverage.mjs", "console": "integratedTerminal" },
+    { "name": "Debug capture --list", "type": "node", "request": "launch", "program": "${workspaceFolder}/tools/capture.mjs", "args": ["--list"], "console": "integratedTerminal" },
+    { "name": "Debug validate", "type": "node", "request": "launch", "program": "${workspaceFolder}/tools/validate.mjs", "console": "integratedTerminal" }
+  ]
+}

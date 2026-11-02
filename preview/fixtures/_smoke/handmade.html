@@ -1,0 +1,21 @@
+<!doctype html>
+<!-- Handmade smoke-test fixture, NOT a Steam capture. Uses only unhashed
+     semantic classes so it survives Steam updates. Replace with real captures
+     via `npm run capture`. -->
+<html class="BasicUI GamepadMode">
+  <head><meta charset="utf-8"><title>smoke</title>
+    <style>
+      body { margin: 0; background: #0e141b; color: #fff; font-family: sans-serif; }
+      .wrap { padding: 32px; display: grid; gap: 16px; justify-items: start; }
+      button.DialogButton { min-width: 200px; color: #fff; background: #3d4450; border: 0; padding: 10px 16px; font-size: 16px; border-radius: 2px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap" data-cs-visible>
+      <h2 data-cs-visible>DialogButton states</h2>
+      <button class="DialogButton Focusable" data-cs-visible>Default</button>
+      <button class="DialogButton Focusable gpfocus" data-cs-visible>Focused (.gpfocus)</button>
+      <button class="DialogButton Focusable" disabled data-cs-visible>Disabled</button>
+    </div>
+  </body>
+</html>

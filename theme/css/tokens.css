@@ -1,0 +1,23 @@
+/* Design tokens: --cs-* variables only. Values from steamscheme.res (2004 VGUI). */
+:root {
+	--cs-bg-light: #5a6a50;      /* headers, focus, selection */
+	--cs-bg: #4c5844;            /* panels, tab bodies, buttons */
+	--cs-bg-dark: #3e4637;       /* window/page background */
+	--cs-border-bright: #808080; /* lit bevel edge */
+	--cs-border-dark: #282e22;   /* unlit bevel edge */
+	--cs-text: #d8ded3;          /* primary text */
+	--cs-text-selected: #ffffff; /* selected/focused text */
+	--cs-maize: #c4b550;         /* accent */
+	--cs-maize-bg: #91863c;      /* accent dark / gradient end */
+	--cs-label: #a0aa95;         /* labels */
+	--cs-text-dim: #758666;      /* secondary list text */
+	--cs-disabled-1: #75806f;    /* disabled text */
+	--cs-disabled-2: #282e22;    /* disabled text shadow */
+
+	--cs-font: "Tahoma", "Verdana", sans-serif;
+	--cs-bevel-width: 1px;
+
+	/* border-color shorthands: top right bottom left */
+	--cs-bevel-raised: var(--cs-border-bright) var(--cs-border-dark) var(--cs-border-dark) var(--cs-border-bright);
+	--cs-bevel-sunken: var(--cs-border-dark) var(--cs-border-bright) var(--cs-border-bright) var(--cs-border-dark);
+}

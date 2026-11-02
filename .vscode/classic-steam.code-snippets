@@ -1,0 +1,20 @@
+{
+  "Raised bevel": {
+    "scope": "css",
+    "prefix": "cs-raised",
+    "body": ["border: var(--cs-bevel-width) solid;", "border-color: var(--cs-bevel-raised);"],
+    "description": "VGUI raised control: bright top/left, dark bottom/right"
+  },
+  "Sunken bevel": {
+    "scope": "css",
+    "prefix": "cs-sunken",
+    "body": ["border: var(--cs-bevel-width) solid;", "border-color: var(--cs-bevel-sunken);"],
+    "description": "VGUI sunken area: text entries, list boxes, troughs, pressed buttons"
+  },
+  "Controller focus": {
+    "scope": "css",
+    "prefix": "cs-focus",
+    "body": ["${1:.selector}.gpfocus {", "\tbackground: var(--cs-bg-light);", "\tcolor: var(--cs-text-selected);", "\tborder: var(--cs-bevel-width) solid;", "\tborder-color: var(--cs-bevel-raised);", "}"],
+    "description": "VGUI keyfocus look for .gpfocus"
+  }
+}

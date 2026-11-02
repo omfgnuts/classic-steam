@@ -1,0 +1,23 @@
+{
+  // theme.json validation against manifest v9 (DeckThemes' extension stops at v8).
+  "json.schemas": [
+    { "fileMatch": ["/theme/theme.json"], "url": "./tools/theme.schema.json" }
+  ],
+  // --cs- token autocomplete (vunguyentuan.vscode-css-variables)
+  "cssVariables.lookupFiles": ["theme/css/tokens.css"],
+  "cssVariables.languages": ["css"],
+  "css.lint.unknownAtRules": "ignore",
+  "editor.tabSize": 2,
+  "[css]": { "editor.tabSize": 4, "editor.insertSpaces": false },
+  "files.associations": { "*.steam.css": "css" },
+  "files.exclude": { "**/.DS_Store": true },
+  "search.exclude": {
+    "**/node_modules": true,
+    "dist": true,
+    ".cache": true,
+    ".reference": true,
+    "preview/fixtures/**/*.steam.css": true,
+    "docs/coverage.generated.md": true
+  },
+  "files.watcherExclude": { "**/.reference/**": true, "**/.cache/**": true }
+}

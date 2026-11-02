@@ -1,0 +1,41 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+      - run: npm run zip
+      - name: Check tag matches theme.json version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          v=$(node -p "require('./theme/theme.json').version")
+          test "$v" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != theme.json $v"; exit 1; }
+      - uses: actions/upload-artifact@v7
+        with:
+          name: theme-zip
+          path: dist/*.zip
+      - name: Attach zip to release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 \
+            || gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes "See docs/CHANGELOG.md" \
+              $([[ "$GITHUB_REF_NAME" == *-* ]] && echo --prerelease)
+          gh release upload "$GITHUB_REF_NAME" dist/*.zip --clobber

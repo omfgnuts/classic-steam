@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Preview (npm run dev)", "type": "npm", "script": "dev", "isBackground": true, "problemMatcher": [], "group": { "kind": "build", "isDefault": true } },
+    { "label": "Validate", "type": "npm", "script": "validate", "problemMatcher": [] },
+    { "label": "Build", "type": "npm", "script": "build", "problemMatcher": [] },
+    { "label": "Zip release", "type": "npm", "script": "zip", "problemMatcher": [] },
+    { "label": "Deploy to Deck", "type": "npm", "script": "deploy", "problemMatcher": [] },
+    { "label": "Deploy to Deck (watch)", "type": "npm", "script": "deploy:watch", "isBackground": true, "problemMatcher": [] },
+    { "label": "Capture: list CEF tabs", "type": "shell", "command": "npm run capture -- --list", "problemMatcher": [] },
+    {
+      "label": "Capture surface",
+      "type": "shell",
+      "command": "npm run capture -- --surface ${input:surface}",
+      "problemMatcher": []
+    },
+    { "label": "Coverage report", "type": "npm", "script": "coverage", "problemMatcher": [] },
+    { "label": "Refresh class mappings", "type": "npm", "script": "mappings", "problemMatcher": [] }
+  ],
+  "inputs": [
+    {
+      "id": "surface",
+      "type": "pickString",
+      "description": "Surface (open it on the Deck first)",
+      "options": ["home", "library", "appdetails", "search", "downloads", "storage", "settings", "mainmenu", "qam", "friends-chat", "store", "lockscreen", "power-menu", "media", "keyboard"]
+    }
+  ]
+}
